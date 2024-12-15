@@ -1,25 +1,17 @@
 {
-	"geode": "3.3.0",
+	"geode": "4.0.1",
 	"gd": {
-		"win": "2.206",
-		"android": "2.206",
-		"mac": "2.206",
-		"ios": "2.206"
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
 	},
-	"platform": ["win", "android", "mac"],
 	"id": "jecket.gauntlets_position_fix",
 	"name": "Gauntlets Position Fix",
-	"version": "v1.0.0",
+	"version": "v2.0.0",
 	"developer": "Jecket",
 	"description": "Fixes the positioning for Gauntlet entries.",
 	"repository": "https://github.com/MathieuAR-GDPSFH/Gauntlets-Position-Fix",
-	"dependencies": [
-        {
-            "id": "geode.node-ids",
-            "version": ">=v1.13.1",
-            "importance": "required"
-        }
-	],
 	"tags": [
 		"bugfix"
 	]
