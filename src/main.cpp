@@ -1,23 +1,17 @@
 #include <Geode/Geode.hpp>
-#include <Geode/modify/GauntletSelectLayer.hpp>
 using namespace geode::prelude;
-class $modify(GauntletSelectLayer) {
-    bool init(int gt) {
-        return GauntletSelectLayer::init(gt);
-    }
 
-    void setupGauntlets() {
+#include <Geode/modify/GauntletSelectLayer.hpp>//why u guys move this on top ever? - user95401
+class $modify(GauntletSelectLayerFix, GauntletSelectLayer) {
+    $override void setupGauntlets() {
         GauntletSelectLayer::setupGauntlets();
-
-        auto list = this->getChildByIDRecursive("gauntlets-list");
-        if (!list) return;
-
-        auto pages = typeinfo_cast<CCArray*>(list->getChildByID("gauntlet-pages")->getChildren());
-        if (pages->count() == 0) return;
-
-        auto page = typeinfo_cast<CCMenu*>(typeinfo_cast<CCLayer*>(pages->objectAtIndex(0))->getChildren()->objectAtIndex(0));
-        if (pages->count() == 1) {
-            page->setPosition({-285.f, page->getPosition().y});
-        }
-    }
+        findFirstChildRecursive<ExtendedLayer>(this,
+            [](ExtendedLayer* gauntlet_pages) {
+                if (gauntlet_pages->getChildrenCount() > 1) return false;
+                gauntlet_pages->setAnchorPoint(CCPointMake(1.f, 0.f));
+                gauntlet_pages->ignoreAnchorPointForPosition(false);
+                return true;
+            }
+        );
+    };
 };
